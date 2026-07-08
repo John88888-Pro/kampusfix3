@@ -1,0 +1,6 @@
+{
+  "name": "KampusFix",
+  "description": "Platform digital penghubung pencari & penyedia jasa mahasiswa di lingkungan kampus dengan sistem escrow aman.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

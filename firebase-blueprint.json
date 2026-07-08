@@ -1,0 +1,157 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "Identitas pengguna platform Kampus Fix baik Pencari maupun Penyedia",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["pencari", "penyedia"] },
+        "whatsapp": { "type": "string" },
+        "avatar": { "type": "string" },
+        "bio": { "type": "string" },
+        "keahlian": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "rekeningBank": { "type": "string" },
+        "rekeningNama": { "type": "string" },
+        "portofolio": { "type": "array" }
+      },
+      "required": ["id", "name", "email", "role", "whatsapp", "avatar", "createdAt"]
+    },
+    "Jasa": {
+      "title": "Jasa",
+      "description": "Daftar penawaran jasa dari penyedia",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "penyediaId": { "type": "string" },
+        "penyediaName": { "type": "string" },
+        "penyediaAvatar": { "type": "string" },
+        "penyediaWhatsapp": { "type": "string" },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "duration": { "type": "string" },
+        "features": { "type": "array" },
+        "ratingAvg": { "type": "number" },
+        "totalSales": { "type": "number" },
+        "status": { "type": "string", "enum": ["aktif", "nonaktif"] },
+        "images": { "type": "array" }
+      },
+      "required": ["id", "penyediaId", "penyediaName", "penyediaAvatar", "penyediaWhatsapp", "title", "category", "description", "price", "duration", "features", "ratingAvg", "totalSales", "status", "images"]
+    },
+    "Pesanan": {
+      "title": "Pesanan",
+      "description": "Transaksi pemesanan jasa yang terintegrasi pengaman escrow",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "jasaId": { "type": "string" },
+        "jasaTitle": { "type": "string" },
+        "jasaPrice": { "type": "number" },
+        "penyediaId": { "type": "string" },
+        "penyediaName": { "type": "string" },
+        "penyediaWhatsapp": { "type": "string" },
+        "pencariId": { "type": "string" },
+        "pencariName": { "type": "string" },
+        "pencariWhatsapp": { "type": "string" },
+        "tugasTitle": { "type": "string" },
+        "tugasDesc": { "type": "string" },
+        "tugasDeadline": { "type": "string" },
+        "tugasFileUrl": { "type": "string" },
+        "tugasFileName": { "type": "string" },
+        "catatanTambahan": { "type": "string" },
+        "biayaPlatform": { "type": "number" },
+        "totalBayar": { "type": "number" },
+        "status": { "type": "string" },
+        "buktiPembayaran": { "type": "string" },
+        "buktiPembayaranName": { "type": "string" },
+        "hasilPekerjaanFile": { "type": "string" },
+        "hasilPekerjaanName": { "type": "string" },
+        "hasilPekerjaanCatatan": { "type": "string" },
+        "rating": { "type": "number" },
+        "ulasan": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "historis": { "type": "array" }
+      },
+      "required": ["id", "jasaId", "jasaTitle", "jasaPrice", "penyediaId", "penyediaName", "penyediaWhatsapp", "pencariId", "pencariName", "pencariWhatsapp", "tugasTitle", "tugasDesc", "tugasDeadline", "biayaPlatform", "totalBayar", "status", "createdAt", "historis"]
+    },
+    "Notifikasi": {
+      "title": "Notifikasi",
+      "description": "Notifikasi pembaruan pesanan/sistem penyedia & pencari",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "read": { "type": "boolean" },
+        "pesananId": { "type": "string" },
+        "jasaId": { "type": "string" },
+        "type": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "message", "read", "type", "createdAt"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "Rating dan ulasan atas jasa yang diberikan",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "jasaId": { "type": "string" },
+        "pencariName": { "type": "string" },
+        "pencariAvatar": { "type": "string" },
+        "rating": { "type": "number" },
+        "ulasan": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "jasaId", "pencariName", "pencariAvatar", "rating", "ulasan", "createdAt"]
+    },
+    "Pendapatan": {
+      "title": "Pendapatan",
+      "description": "Uang masuk penyedia jasa yang tersimpan dalam sistem escrow",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "pesananId": { "type": "string" },
+        "penyediaId": { "type": "string" },
+        "jasaTitle": { "type": "string" },
+        "pencariName": { "type": "string" },
+        "amount": { "type": "number" },
+        "statusCair": { "type": "boolean" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "pesananId", "penyediaId", "jasaTitle", "pencariName", "amount", "statusCair", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles containing information for seekers (pencari) and helpers (penyedia)"
+    },
+    "/jasa/{jasaId}": {
+      "schema": "Jasa",
+      "description": "Collection of services created by service providers (helpers)"
+    },
+    "/pesanan/{pesananId}": {
+      "schema": "Pesanan",
+      "description": "Collection storing contract orders with statuses ranging from draft, paid, working, completed, etc."
+    },
+    "/notifikasi/{notifikasiId}": {
+      "schema": "Notifikasi",
+      "description": "Notifications belonging to either providers or seekers"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "Provider work review data from completed orders"
+    },
+    "/pendapatan/{pendapatanId}": {
+      "schema": "Pendapatan",
+      "description": "Earnings log associated with provider orders"
+    }
+  }
+}
